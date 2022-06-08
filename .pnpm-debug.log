@@ -1,0 +1,21 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ELIFECYCLE",
+    "errno": "ENOENT",
+    "syscall": "spawn",
+    "file": "sh",
+    "pkgid": "@",
+    "stage": "dev",
+    "script": "concurrently \"npm run dev:css\" \"remix dev\"",
+    "err": {
+      "name": "pnpm",
+      "message": "@ dev: `concurrently \"npm run dev:css\" \"remix dev\"`\nspawn ENOENT",
+      "code": "ELIFECYCLE",
+      "stack": "pnpm: @ dev: `concurrently \"npm run dev:css\" \"remix dev\"`\nspawn ENOENT\n    at ChildProcess.<anonymous> (/Users/chakibbenchinoun/Library/pnpm/nodejs/16.13.1/pnpm-global/5/node_modules/.pnpm/pnpm@6.25.0/node_modules/pnpm/dist/pnpm.cjs:91978:22)\n    at ChildProcess.emit (node:events:390:28)\n    at maybeClose (node:internal/child_process:1064:16)\n    at Process.ChildProcess._handle.onexit (node:internal/child_process:301:5)"
+    }
+  },
+  "2 warn pnpm:global": " Local package.json exists, but node_modules missing, did you mean to install?"
+}

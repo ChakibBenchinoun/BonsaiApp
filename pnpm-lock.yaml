@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@babel/core': '>=7.13.0 <8.0.0'
   '@babel/preset-env': ^7.1.6
+  '@babel/preset-react': ^7.17.12
   '@remix-run/dev': ^1.5.1
   '@remix-run/eslint-config': ^1.5.1
   '@remix-run/node': ^1.5.1
@@ -24,6 +25,7 @@ specifiers:
 dependencies:
   '@babel/core': 7.18.2
   '@babel/preset-env': 7.18.2_@babel+core@7.18.2
+  '@babel/preset-react': 7.17.12_@babel+core@7.18.2
   '@remix-run/node': 1.5.1_react-dom@17.0.2+react@17.0.2
   '@remix-run/react': 1.5.1_react-dom@17.0.2+react@17.0.2
   '@remix-run/serve': 1.5.1_react-dom@17.0.2+react@17.0.2
@@ -673,7 +675,6 @@ packages:
     dependencies:
       '@babel/core': 7.18.2
       '@babel/helper-plugin-utils': 7.17.12
-    dev: true
 
   /@babel/plugin-syntax-logical-assignment-operators/7.10.4_@babel+core@7.18.2:
     resolution: {integrity: sha512-d8waShlpFDinQ5MtvGU9xDAOzKH47+FFoney2baFIoMr952hKOLp1HR7VszoZvOsV/4+RRszNY7D17ba0te0ig==}
@@ -1054,7 +1055,6 @@ packages:
     dependencies:
       '@babel/core': 7.18.2
       '@babel/helper-plugin-utils': 7.17.12
-    dev: true
 
   /@babel/plugin-transform-react-jsx-development/7.16.7_@babel+core@7.18.2:
     resolution: {integrity: sha512-RMvQWvpla+xy6MlBpPlrKZCMRs2AGiHOGHY3xRwl0pEeim348dDyxeH4xBsMPbIMhujeq7ihE702eM2Ew0Wo+A==}
@@ -1064,7 +1064,6 @@ packages:
     dependencies:
       '@babel/core': 7.18.2
       '@babel/plugin-transform-react-jsx': 7.17.12_@babel+core@7.18.2
-    dev: true
 
   /@babel/plugin-transform-react-jsx/7.17.12_@babel+core@7.18.2:
     resolution: {integrity: sha512-Lcaw8bxd1DKht3thfD4A12dqo1X16he1Lm8rIv8sTwjAYNInRS1qHa9aJoqvzpscItXvftKDCfaEQzwoVyXpEQ==}
@@ -1078,7 +1077,6 @@ packages:
       '@babel/helper-plugin-utils': 7.17.12
       '@babel/plugin-syntax-jsx': 7.17.12_@babel+core@7.18.2
       '@babel/types': 7.18.4
-    dev: true
 
   /@babel/plugin-transform-react-pure-annotations/7.18.0_@babel+core@7.18.2:
     resolution: {integrity: sha512-6+0IK6ouvqDn9bmEG7mEyF/pwlJXVj5lwydybpyyH3D0A7Hftk+NCTdYjnLNZksn261xaOV5ksmp20pQEmc2RQ==}
@@ -1089,7 +1087,6 @@ packages:
       '@babel/core': 7.18.2
       '@babel/helper-annotate-as-pure': 7.16.7
       '@babel/helper-plugin-utils': 7.17.12
-    dev: true
 
   /@babel/plugin-transform-regenerator/7.18.0_@babel+core@7.18.2:
     resolution: {integrity: sha512-C8YdRw9uzx25HSIzwA7EM7YP0FhCe5wNvJbZzjVNHHPGVcDJ3Aie+qGYYdS1oVQgn+B3eAIJbWFLrJ4Jipv7nw==}
@@ -1336,7 +1333,6 @@ packages:
       '@babel/plugin-transform-react-jsx': 7.17.12_@babel+core@7.18.2
       '@babel/plugin-transform-react-jsx-development': 7.16.7_@babel+core@7.18.2
       '@babel/plugin-transform-react-pure-annotations': 7.18.0_@babel+core@7.18.2
-    dev: true
 
   /@babel/preset-typescript/7.16.7_@babel+core@7.17.8:
     resolution: {integrity: sha512-WbVEmgXdIyvzB77AQjGBEyYPZx+8tTsO50XtfozQrkW8QB2rLJpH2lgx0TRw5EJrBxOZQ+wCcyPVQvS8tjEHpQ==}
