@@ -77,45 +77,47 @@ function Document({
 function Layout() {
   return (
     <>
-      <div className="flex w-full lg:max-w-7xl mx-auto p-3 items-center justify-between xl:px-10 h-20">
-        <div className="shrink-0">
-          <img
-            src="https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/5e5fd7c602ca7cd432feb68e_bonsai-logo.svg"
-            width="150"
-            alt="Bonsai logo"
-          />
-        </div>
-        <div className="hidden w-3/4 lg:flex justify-end h-full">
-          <div className="flex items-center mr-8">
-            {navigation.map(link =>
-              link.name === 'Product' ? (
-                <ProductDropDown />
-              ) : link.name === 'Templates' ? (
-                <TemplateDropDown />
-              ) : (
-                <Link className="mr-11" key={link.name} to={link.to}>
-                  {link.name}
-                </Link>
-              ),
-            )}
+      <div className="bg-white fixed w-full top-0 z-50">
+        <div className="flex w-full lg:max-w-7xl mx-auto p-3 items-center justify-between xl:px-10 h-20 bg-white">
+          <div className="shrink-0">
+            <img
+              src="https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/5e5fd7c602ca7cd432feb68e_bonsai-logo.svg"
+              width="150"
+              alt="Bonsai logo"
+            />
           </div>
-          <div className="flex items-center">
-            <Link
-              to="/"
-              className="py-2 px-6 border border-primary rounded-md text-sm text-primaryDark hover:bg-primary hover:text-white font-bold whitespace-nowrap uppercase transition"
-            >
-              Log in
-            </Link>
-            <Link
-              className="py-2 px-6 bg-primary border border-primary rounded-md text-white text-sm ml-4 hover:bg-primaryDark whitespace-nowrap font-bold uppercase transition"
-              to="/"
-            >
-              Start free
-            </Link>
+          <div className="hidden w-3/4 lg:flex justify-end h-full">
+            <div className="flex items-center mr-8">
+              {navigation.map(link =>
+                link.name === 'Product' ? (
+                  <ProductDropDown />
+                ) : link.name === 'Templates' ? (
+                  <TemplateDropDown />
+                ) : (
+                  <Link className="mr-11" key={link.name} to={link.to}>
+                    {link.name}
+                  </Link>
+                ),
+              )}
+            </div>
+            <div className="flex items-center">
+              <Link
+                to="/"
+                className="py-2 px-6 border border-primary rounded-md text-sm text-primaryDark hover:bg-primary hover:text-white font-bold whitespace-nowrap uppercase transition"
+              >
+                Log in
+              </Link>
+              <Link
+                className="py-2 px-6 bg-primary border border-primary rounded-md text-white text-sm ml-4 hover:bg-primaryDark whitespace-nowrap font-bold uppercase transition"
+                to="/"
+              >
+                Start free
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="block lg:hidden px-5">
-          <Link to="/">Menu</Link>
+          <div className="block lg:hidden px-5">
+            <Link to="/">Menu</Link>
+          </div>
         </div>
       </div>
     </>
@@ -140,7 +142,7 @@ function ProductDropDown() {
         onMouseLeave={() => setShowProductsMenu(false)}
         className={clsx(
           showProductsMenu ? 'flex' : 'hidden',
-          'absolute shadow-fullShadow -ml-32 z-[1]',
+          'absolute shadow-fullShadow -ml-32 z-[1] bg-white',
         )}
       >
         <div className="flex flex-col max-w-[360px] w-full">
@@ -272,7 +274,7 @@ function TemplateDropDown() {
         onMouseLeave={() => setShowTemplateMenu(false)}
         className={clsx(
           showTemplateMenu ? 'grid' : 'hidden',
-          'absolute grid-cols-5 max-w-3xl w-full -ml-36 z-[1] shadow-fullShadow pt-3 pb-5',
+          'absolute grid-cols-5 max-w-3xl w-full -ml-36 z-[1] shadow-fullShadow pt-3 pb-5 bg-white',
         )}
       >
         <div className="col-span-2">
