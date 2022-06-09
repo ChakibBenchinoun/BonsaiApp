@@ -1,11 +1,11 @@
 export type Templates = {
   name: string
-  imgSrc: string
-  header: string
+  imgSrc?: string
+  header?: string
   templates: {name: string}[]
 }[]
 
-const templates: Templates = [
+const navTemplates: Templates = [
   {
     name: 'Contract Templates',
     imgSrc:
@@ -92,6 +92,90 @@ const templates: Templates = [
   },
 ]
 
-export function getTemplates() {
-  return templates
+const footerTemplates: Templates = [
+  {
+    name: 'Contract Templates',
+    templates: [
+      {name: 'Online Contract'},
+      {name: 'Graphic Design Contract'},
+      {name: 'Freelance Contract Template'},
+      {name: 'Social Media Marketing Contract'},
+      {name: 'Software Development Contract'},
+      {name: 'Video Production Contract'},
+      {name: 'Web Design Contract'},
+      {name: 'Public Relations Contract'},
+      {name: 'Translation Contract'},
+    ],
+  },
+  {
+    name: 'Proposal Templates',
+    templates: [
+      {name: 'Website Proposal Template'},
+      {name: 'Digital Marketing Proposal Template'},
+      {name: 'Social Media Marketing Proposal'},
+      {name: 'Graphic Design Proposal'},
+      {name: 'Freelance Proposal Template'},
+      {name: 'SEO Proposal Template'},
+    ],
+  },
+  {
+    name: 'Invoice Templates',
+    templates: [
+      {name: 'Invoice Generator'},
+      {name: 'Blank Invoice Template'},
+      {name: 'Consultant Invoice Template'},
+      {name: 'Editable Invoice Template'},
+      {name: 'Graphic Design Invoice'},
+      {name: 'Web Design Invoice'},
+      {name: 'Contractor Invoice Template'},
+      {name: 'Photography Invoice Template'},
+      {name: 'Self Employed Invoice Template'},
+    ],
+  },
+  {
+    name: 'Agreement Templates',
+    templates: [
+      {name: 'Retainer Agreement Template'},
+      {name: 'Influencer Agreement Template'},
+      {name: 'Collaboration Agreement Template'},
+      {name: 'Marketing Agreement Template'},
+    ],
+  },
+  {
+    name: 'Quote Templates',
+    templates: [
+      {name: 'Freelance Quotation Template'},
+      {name: 'Web Design Quotation Template'},
+      {name: 'Graphic Design Quotation Template'},
+      {name: 'Interior Design Quotation Template'},
+      {name: 'Video Production Quotation Template'},
+      {name: 'Social Media Marketing Quotation'},
+    ],
+  },
+  {
+    name: 'Scope of Work Templates',
+    templates: [
+      {name: 'Website Development Scope of Work'},
+      {name: 'Digital Marketing Scope of Work'},
+      {name: 'Consultant Scope of Work Template'},
+      {name: 'Software Development Scope of Work'},
+    ],
+  },
+  {
+    name: 'Brief Templates',
+    templates: [
+      {name: 'Design Brief Template'},
+      {name: 'Architecture Design Brief'},
+      {name: 'Fashion Design Brief'},
+      {name: 'Creative Brief Template'},
+    ],
+  },
+]
+
+export function getNavTemplates() {
+  return navTemplates
+}
+
+export function getFooterTemplates() {
+  return footerTemplates
 }

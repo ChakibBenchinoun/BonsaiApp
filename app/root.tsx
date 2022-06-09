@@ -14,8 +14,13 @@ import React from 'react'
 import ChevronDown from './components/icons/chevron-down'
 import ChevronRight from './components/icons/chevron-right'
 import {type Products, getProducts} from './utils/products'
-import {type Templates, getTemplates} from './utils/templates'
+import {
+  type Templates,
+  getNavTemplates,
+  getFooterTemplates,
+} from './utils/templates'
 import styles from './styles/app.css'
+import {Disclosure, Transition} from '@headlessui/react'
 
 export function links() {
   return [{rel: 'stylesheet', href: styles}]
@@ -34,12 +39,80 @@ const navigation = [
   {name: 'Reviews', to: '/reviews'},
 ]
 
-type LoaderData = {products: Products; templates: Templates}
+type LoaderData = {
+  products: Products
+  navTemplates: Templates
+  footerTemplates: Templates
+}
 
 export const loader: LoaderFunction = async () => {
-  const data: LoaderData = {products: getProducts(), templates: getTemplates()}
+  const data: LoaderData = {
+    products: getProducts(),
+    navTemplates: getNavTemplates(),
+    footerTemplates: getFooterTemplates(),
+  }
   return data
 }
+
+const footerLinks = [
+  {
+    col: 'product',
+    sections: [
+      {
+        section: [
+          'proposals',
+          'contracts',
+          'invoicing',
+          'client CRM',
+          'time tracking',
+          'task tracking',
+          'forms',
+          'accounting',
+          'bonsai tax',
+          'bonsai cash',
+        ],
+      },
+      {section: ['pricing', 'bonsai reviews']},
+    ],
+  },
+  {
+    col: 'free resources',
+    sections: [
+      {
+        section: [
+          'freelance resources',
+          'freelance blog by bonsai',
+          'how to write a contract',
+          'online signature maker',
+        ],
+      },
+      {
+        section: [
+          'self-employed taxes hub',
+          'self-employed tax calculator',
+          'self-employed tax deductions',
+        ],
+      },
+    ],
+  },
+  {
+    col: 'bonsai',
+    sections: [
+      {
+        section: [
+          'about',
+          'careers',
+          'supports',
+          'linkedIn',
+          'twitter',
+          'privacy policy',
+          'legal',
+        ],
+      },
+      {section: ['affiliates', 'write for us']},
+    ],
+  },
+]
 
 export default function App() {
   return (
@@ -278,17 +351,17 @@ function TemplateDropDown() {
         )}
       >
         <div className="col-span-2">
-          {data.templates.map(templateType => (
+          {data.navTemplates.map(templateType => (
             <TemplateDropDownItem
               handleName={() => setTemplateName(templateType.name)}
               key={templateType.name}
               name={templateType.name}
-              imgSrc={templateType.imgSrc}
+              imgSrc={templateType.imgSrc || ''}
             />
           ))}
         </div>
         <div className="col-span-3 px-10 flex flex-col">
-          {data.templates.map(template =>
+          {data.navTemplates.map(template =>
             template.name === templateName ? (
               <>
                 <h1 className="font-serif text-xl py-3">{template.header}</h1>
@@ -339,5 +412,94 @@ function TemplateDropDownItem({
         </div>
       ) : null}
     </button>
+  )
+}
+
+function Footer() {
+  const data = useLoaderData<LoaderData>()
+  const comparisons = [
+    'Freshbooks Alternatives',
+    'Quickbooks Alternatives',
+    'Wave vs Quickbooks',
+    'Xero vs Quickbooks',
+    'Freshbooks vs Quickbooks',
+  ]
+  return (
+    <div className="max-w-5xl m-auto w-full grid grid-cols-3 gap-20 bottom-0 py-20">
+      {footerLinks.map(column => (
+        <div key={column.col}>
+          <h1 className="uppercase font-semibold text-lg mb-10">
+            {column.col}
+          </h1>
+          {column.sections.map(section => (
+            <>
+              <div className="mt-8 flex flex-col">
+                {section.section.map(link => (
+                  <Link
+                    key={link}
+                    to="/"
+                    className="capitalize my-1 text-slate-500 w-fit hover:text-slate-600"
+                  >
+                    {link}
+                  </Link>
+                ))}
+              </div>
+            </>
+          ))}
+          {column.col === 'free resources' ? (
+            <div className="mt-8 flex flex-col">
+              <h1 className="font-semibold mb-2">Templates</h1>
+              {data.footerTemplates.map(templatesSection => (
+                <Disclosure key={templatesSection.name}>
+                  {({open}) => (
+                    <>
+                      <Disclosure.Button className="text-left text-slate-500 flex items-center">
+                        <span>{templatesSection.name}</span>
+                        <ChevronDown className="h-7 w-8 mt-1" />
+                      </Disclosure.Button>
+                      <Disclosure.Panel className="text-gray-500 flex flex-col">
+                        {templatesSection.templates.map(template => (
+                          <Link
+                            key={template.name}
+                            to="/"
+                            className="capitalize my-1 ml-3 text-slate-500 w-fit hover:text-slate-600"
+                          >
+                            {template.name}
+                          </Link>
+                        ))}
+                      </Disclosure.Panel>
+                    </>
+                  )}
+                </Disclosure>
+              ))}
+            </div>
+          ) : column.col === 'bonsai' ? (
+            <div className="mt-8 flex flex-col">
+              <Disclosure>
+                {({open}) => (
+                  <>
+                    <Disclosure.Button className="text-left text-slate-500 flex items-center">
+                      <span>Comparisons</span>
+                      <ChevronDown className="h-7 w-8 mt-1" />
+                    </Disclosure.Button>
+                    <Disclosure.Panel className="text-gray-500 flex flex-col">
+                      {comparisons.map(link => (
+                        <Link
+                          key={link}
+                          to="/"
+                          className="capitalize my-1 ml-3 text-slate-500 w-fit hover:text-slate-600"
+                        >
+                          {link}
+                        </Link>
+                      ))}
+                    </Disclosure.Panel>
+                  </>
+                )}
+              </Disclosure>
+            </div>
+          ) : null}
+        </div>
+      ))}
+    </div>
   )
 }
