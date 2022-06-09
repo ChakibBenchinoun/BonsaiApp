@@ -2,6 +2,7 @@ import {Disclosure, Switch} from '@headlessui/react'
 import clsx from 'clsx'
 import React from 'react'
 import ChevronDown from '~/components/icons/chevron-down'
+import {StartFreeCard} from '~/components/start-free-card'
 
 const plansAndPricing = [
   {
@@ -254,15 +255,10 @@ export default function PricingPage() {
             )}
           </div>
         </div>
-        <div className="px-10 py-16 mt-24 max-w-4xl mx-auto bg-blue-50 rounded-md flex justify-between items-center">
-          <p className="text-4xl font-serif text-slate-600">
-            It’s <span className="text-primary">your</span> business.
-            <br /> We’re here to help it grow.
-          </p>
-          <button className="py-4 px-10 bg-primary border border-primary rounded-md text-white text-sm hover:bg-primaryDark whitespace-nowrap font-bold uppercase transition">
-            start free
-          </button>
-        </div>
+        <StartFreeCard className="mt-24">
+          It’s <span className="text-primary">your</span> business.
+          <br /> We’re here to help it grow.
+        </StartFreeCard>
         <div className="w-full flex flex-col items-center mt-32">
           <h1 className="text-3xl text-primary font-bold  py-8">
             Frequently Asked Questions

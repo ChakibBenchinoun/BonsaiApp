@@ -153,11 +153,13 @@ function Layout() {
       <div className="bg-white fixed w-full top-0 z-50">
         <div className="flex w-full lg:max-w-7xl mx-auto p-3 items-center justify-between xl:px-10 h-20 bg-white">
           <div className="shrink-0">
-            <img
-              src="https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/5e5fd7c602ca7cd432feb68e_bonsai-logo.svg"
-              width="150"
-              alt="Bonsai logo"
-            />
+            <Link to="/">
+              <img
+                src="https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/5e5fd7c602ca7cd432feb68e_bonsai-logo.svg"
+                width="150"
+                alt="Bonsai logo"
+              />
+            </Link>
           </div>
           <div className="hidden w-3/4 lg:flex justify-end h-full">
             <div className="flex items-center mr-8">
@@ -472,6 +474,18 @@ function Footer() {
                   )}
                 </Disclosure>
               ))}
+              <Link
+                to="/"
+                className="capitalize my-1 text-slate-500 w-fit hover:text-slate-600"
+              >
+                Credit Note Templates
+              </Link>
+              <Link
+                to="/"
+                className="capitalize my-1 text-slate-500 w-fit hover:text-slate-600"
+              >
+                Estimate Templates
+              </Link>
             </div>
           ) : column.col === 'bonsai' ? (
             <div className="mt-8 flex flex-col">
