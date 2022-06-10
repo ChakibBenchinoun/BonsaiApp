@@ -119,6 +119,7 @@ export default function App() {
     <Document title="Bonsai (Practice)">
       <Layout />
       <Outlet />
+      {/* <Footer /> */}
     </Document>
   )
 }
@@ -355,8 +356,8 @@ function TemplateDropDown() {
         <div className="col-span-2">
           {data.navTemplates.map(templateType => (
             <TemplateDropDownItem
-              handleName={() => setTemplateName(templateType.name)}
               key={templateType.name}
+              handleName={() => setTemplateName(templateType.name)}
               name={templateType.name}
               imgSrc={templateType.imgSrc || ''}
             />
@@ -427,7 +428,7 @@ function Footer() {
     'Freshbooks vs Quickbooks',
   ]
   return (
-    <div className="max-w-5xl m-auto w-full grid grid-cols-3 gap-20 bottom-0 py-20">
+    <div className="max-w-5xl m-auto w-full grid grid-cols-3 gap-20 py-20">
       {footerLinks.map(column => (
         <div key={column.col}>
           <h1 className="uppercase font-semibold text-lg mb-10">
