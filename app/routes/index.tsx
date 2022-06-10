@@ -1,10 +1,10 @@
-import {LoaderFunction} from '@remix-run/node'
+import {type LoaderFunction} from '@remix-run/node'
 import {Link, useLoaderData} from '@remix-run/react'
 import React from 'react'
 import {HeroSection, HeroSectionInfo} from '~/components/hero-section'
 import ArrowRight from '~/components/icons/arrow-right'
 import {StartFreeCard} from '~/components/start-free-card'
-import {getReviews, Review} from '~/utils/reviews'
+import {getReviews, type Review} from '~/utils/reviews'
 
 type LoaderData = {
   reviews: Review
