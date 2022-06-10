@@ -1,84 +1,30 @@
 import {type LoaderFunction} from '@remix-run/node'
 import {Link, useLoaderData} from '@remix-run/react'
+import clsx from 'clsx'
 import React from 'react'
 import {HeroSection, HeroSectionInfo} from '~/components/hero-section'
 import ArrowRight from '~/components/icons/arrow-right'
+import ChevronRight from '~/components/icons/chevron-right'
 import {StartFreeCard} from '~/components/start-free-card'
 import {getReviews, type Review} from '~/utils/reviews'
+import {getTypesOfBusiness, TypeOfBusiness} from '~/utils/typesOfBusiness'
 
 type LoaderData = {
   reviews: Review
+  typesOfBusiness: TypeOfBusiness
 }
 
 export const loader: LoaderFunction = async () => {
   const data: LoaderData = {
     reviews: getReviews(),
+    typesOfBusiness: getTypesOfBusiness(),
   }
   return data
 }
 
-const types = [
-  {
-    button: 'proposals',
-    header: 'Win More Work',
-    info: 'With just a few clicks, you can craft structured proposals with clear estimates to close your deals faster.',
-    explore: 'PROPOSALS',
-    img: 'https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/6050acdd031b9f58db100f72_Graphic_Proposal-opt.png',
-  },
-  {
-    button: 'contract',
-    header: 'Protect Your Business',
-    info: 'Simply answer a few questions to generate an already vetted contract template. Once you hit send, the contract can be e-signed in minutes.',
-    explore: 'contract',
-    img: 'https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/6050ad775d1c278c443c76d6_Graphic_Contact-opt.png',
-  },
-  {
-    button: 'client CRM',
-    header: 'Stay Organized',
-    info: 'Manage your clients and ongoing projects all in one place. Organize all the documents, files and payments together for you and your client.',
-    explore: 'projects',
-    img: 'https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/5e5fd7c602ca7c5ad3feb65b_Graphic_Projects-min.png',
-  },
-  {
-    button: 'time tracking',
-    header: 'Keep It Simple',
-    info: "Easily track the time you're working, automatically populate timesheets and seamlessly switch between your projects for the day.",
-    explore: 'tracking',
-    img: 'https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/5e5fd7c602ca7c4dc9feb654_Graphic_Track%20time-min.png',
-  },
-  {
-    button: 'invoices',
-    header: 'Get Paid Faster',
-    info: 'Create and customize invoices, receive updates about payment timelines, and have automatic payment reminders sent on your behalf.',
-    explore: 'invoices',
-    img: 'https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/60241fc5e974b72f0865513b_Graphic_Invoice-min.png',
-  },
-  {
-    button: 'task tracking',
-    header: 'Be More Effective',
-    info: 'Give your day more structure with simple task management on your projects. Track time for each task and stay up-to-date.',
-    explore: 'tasks',
-    img: 'https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/6050aec11e1747965bfc16a5_task-management-graphic-opt.png',
-  },
-  {
-    button: 'accounting & taxes',
-    header: 'Automate Your Finances',
-    info: "Don't worry about freelance finances when you have automatic expense tracking, income reporting and estimated tax planning.",
-    explore: 'accounting & taxes',
-    img: 'https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/6050af07c36c35952ad19fbe_Graphic_Accounting-opt.png',
-  },
-  {
-    button: 'forms',
-    header: 'Ask Your Clients',
-    info: 'Create your own customized forms and questionnaires for clients and kicking off new projects',
-    explore: 'forms',
-    img: 'https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/6050af50cd2ff1fc7708d532_home-forms-opt.png',
-  },
-]
-
 export default function Index() {
   const data = useLoaderData<LoaderData>()
-  const [active, setActive] = React.useState(types[0].button)
+  const [active, setActive] = React.useState(data.typesOfBusiness[0].button)
   return (
     <div className="relative h-screen overflow-x-hidden">
       <div className="bg-blue-50 h-[140%] w-[90%] -top-[400px] -right-[500px] -rotate-[24deg] absolute -z-50 rounded-[90px]" />
@@ -117,22 +63,32 @@ export default function Index() {
         <div className="grid grid-cols-3 mt-40 relative">
           <div className="bg-orange-50 h-[100%] w-[90%] top-[230px] -right-[600px] -rotate-[22deg] absolute -z-50 rounded-[90px]" />
           <div className="flex flex-col col-span-1">
-            {types.map(item => (
+            {data.typesOfBusiness.map(item => (
               <button
                 key={item.button}
-                className="px-5 py-6 text-left text-xl capitalize font-semibold border-b"
+                className={clsx(
+                  item.button === active
+                    ? 'border-none shadow-fullShadow rounded-md text-primary'
+                    : 'hover:bg-gray-50',
+                  ' flex justify-between items-center px-5 py-6 text-left text-xl capitalize font-semibold border-b transition-all ',
+                )}
                 onClick={() => setActive(item.button)}
               >
-                <img
-                  className="inline-block mr-4 -mt-1"
-                  src="https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/618e4a088d6d0a054fe41abb_contracts%20icon.svg"
-                  alt=""
-                />
-                {item.button}
+                <div>
+                  <img
+                    className="inline-block mr-4 -mt-1 w-6 h-6"
+                    src={item.icon}
+                    alt=""
+                  />
+                  {item.button}
+                </div>
+                {item.button === active ? (
+                  <ChevronRight className="inline-block w-10 h-10" />
+                ) : null}
               </button>
             ))}
           </div>
-          {types
+          {data.typesOfBusiness
             .filter(item => item.button === active)
             .map(itemInfo => (
               <div className="col-span-2 px-32" key={itemInfo.button}>
