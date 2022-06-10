@@ -20,7 +20,7 @@ import {
   getFooterTemplates,
 } from './utils/templates'
 import styles from './styles/app.css'
-import {Disclosure, Transition} from '@headlessui/react'
+import {Disclosure} from '@headlessui/react'
 
 export function links() {
   return [{rel: 'stylesheet', href: styles}]
