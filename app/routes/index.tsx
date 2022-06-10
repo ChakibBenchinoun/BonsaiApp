@@ -6,8 +6,8 @@ import {HeroSection, HeroSectionInfo} from '~/components/hero-section'
 import ArrowRight from '~/components/icons/arrow-right'
 import ChevronRight from '~/components/icons/chevron-right'
 import {StartFreeCard} from '~/components/start-free-card'
-import {getReviews, type Review} from '~/utils/reviews'
-import {getTypesOfBusiness, TypeOfBusiness} from '~/utils/typesOfBusiness'
+import {type Review, getReviews} from '~/utils/reviews'
+import {type TypeOfBusiness, getTypesOfBusiness} from '~/utils/typesOfBusiness'
 
 type LoaderData = {
   reviews: Review
