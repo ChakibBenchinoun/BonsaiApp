@@ -125,7 +125,7 @@ const questions = [
 export default function PricingPage() {
   const [enabled, setEnabled] = React.useState(false)
   return (
-    <div className="relative h-screen overflow-x-hidden">
+    <div className="relative overflow-x-hidden">
       <div className="bg-blue-50 h-[120%] w-[90%] -top-[480px] -right-[22px] -rotate-[24deg] absolute -z-50" />
       <div className="lg:max-w-7xl xl:px-10 p-3 mx-auto mt-20">
         <div className="flex justify-between max-w-xl mx-auto whitespace-nowrap mt-14 lg:mt-32">

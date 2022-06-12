@@ -515,81 +515,83 @@ function Footer() {
     'Freshbooks vs Quickbooks',
   ]
   return (
-    <div className="max-w-5xl m-auto w-full grid grid-cols-3 gap-20 py-20">
-      {footerLinks.map(column => (
-        <div key={column.col}>
-          <h1 className="uppercase font-semibold text-lg mb-10">
-            {column.col}
-          </h1>
-          {column.sections.map(section => (
-            <>
-              <div className="mt-8 flex flex-col">
-                {section.section.map(link => (
-                  <Link
-                    key={link}
-                    to="/"
-                    className="capitalize my-1 text-slate-500 w-fit hover:text-slate-600"
-                  >
-                    {link}
-                  </Link>
-                ))}
-              </div>
-            </>
-          ))}
-          {column.col === 'free resources' ? (
-            <div className="mt-8 flex flex-col">
-              <h1 className="font-semibold mb-2">Templates</h1>
-              {data.footerTemplates.map(templatesSection => (
-                <Disclosure
-                  key={templatesSection.name}
-                  name={templatesSection.name}
-                  className="text-left text-slate-500"
-                >
-                  <Panel className="text-gray-500 flex flex-col">
-                    {templatesSection.templates.map(template => (
-                      <Link
-                        key={template.name}
-                        to="/"
-                        className="capitalize my-1 ml-3 text-slate-500 w-fit hover:text-slate-600"
-                      >
-                        {template.name}
-                      </Link>
-                    ))}
-                  </Panel>
-                </Disclosure>
-              ))}
-              <Link
-                to="/"
-                className="capitalize my-1 text-slate-500 w-fit hover:text-slate-600"
-              >
-                Credit Note Templates
-              </Link>
-              <Link
-                to="/"
-                className="capitalize my-1 text-slate-500 w-fit hover:text-slate-600"
-              >
-                Estimate Templates
-              </Link>
-            </div>
-          ) : column.col === 'bonsai' ? (
-            <div className="mt-8 flex flex-col">
-              <Disclosure name="Comparisons">
-                <Panel className="text-gray-500 flex flex-col">
-                  {comparisons.map(link => (
+    <div className="w-full absolute pb-20 md:py-20">
+      <div className="max-w-[1300px] m-auto w-full block md:flex justify-between px-10">
+        {footerLinks.map(column => (
+          <div key={column.col} className="ml-10 mt-10 md:mt-0">
+            <h1 className="uppercase font-semibold text-lg md:mb-10">
+              {column.col}
+            </h1>
+            {column.sections.map(section => (
+              <>
+                <div className="mt-8 flex flex-col">
+                  {section.section.map(link => (
                     <Link
                       key={link}
                       to="/"
-                      className="capitalize my-1 ml-3 text-slate-500 w-fit hover:text-slate-600"
+                      className="capitalize my-1 text-slate-500 w-fit hover:text-slate-600"
                     >
                       {link}
                     </Link>
                   ))}
-                </Panel>
-              </Disclosure>
-            </div>
-          ) : null}
-        </div>
-      ))}
+                </div>
+              </>
+            ))}
+            {column.col === 'free resources' ? (
+              <div className="mt-8 flex flex-col">
+                <h1 className="font-semibold mb-2">Templates</h1>
+                {data.footerTemplates.map(templatesSection => (
+                  <Disclosure
+                    key={templatesSection.name}
+                    name={templatesSection.name}
+                    className="text-left text-slate-500"
+                  >
+                    <Panel className="text-gray-500 flex flex-col">
+                      {templatesSection.templates.map(template => (
+                        <Link
+                          key={template.name}
+                          to="/"
+                          className="capitalize my-1 ml-3 text-slate-500 w-fit hover:text-slate-600"
+                        >
+                          {template.name}
+                        </Link>
+                      ))}
+                    </Panel>
+                  </Disclosure>
+                ))}
+                <Link
+                  to="/"
+                  className="capitalize my-1 text-slate-500 w-fit hover:text-slate-600"
+                >
+                  Credit Note Templates
+                </Link>
+                <Link
+                  to="/"
+                  className="capitalize my-1 text-slate-500 w-fit hover:text-slate-600"
+                >
+                  Estimate Templates
+                </Link>
+              </div>
+            ) : column.col === 'bonsai' ? (
+              <div className="mt-8 flex flex-col">
+                <Disclosure name="Comparisons">
+                  <Panel className="text-gray-500 flex flex-col">
+                    {comparisons.map(link => (
+                      <Link
+                        key={link}
+                        to="/"
+                        className="capitalize my-1 ml-3 text-slate-500 w-fit hover:text-slate-600"
+                      >
+                        {link}
+                      </Link>
+                    ))}
+                  </Panel>
+                </Disclosure>
+              </div>
+            ) : null}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
