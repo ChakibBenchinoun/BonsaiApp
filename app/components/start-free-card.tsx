@@ -15,7 +15,9 @@ export function StartFreeCard({
         className,
       )}
     >
-      <p className="text-4xl font-serif text-slate-600">{children}</p>
+      <p className="text-4xl font-serif text-slate-600 lg:text-left text-center">
+        {children}
+      </p>
       <button className="py-4 px-10 bg-primary border border-primary rounded-md text-white text-sm hover:bg-primaryDark whitespace-nowrap font-bold uppercase transition">
         start free
       </button>

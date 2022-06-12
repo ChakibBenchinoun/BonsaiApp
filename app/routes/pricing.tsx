@@ -128,7 +128,7 @@ export default function PricingPage() {
     <div className="relative h-screen overflow-x-hidden">
       <div className="bg-blue-50 h-[120%] w-[90%] -top-[480px] -right-[22px] -rotate-[24deg] absolute -z-50" />
       <div className="lg:max-w-7xl xl:px-10 p-3 mx-auto mt-20">
-        <div className="flex justify-between max-w-xl mx-auto whitespace-nowrap mt-32">
+        <div className="flex justify-between max-w-xl mx-auto whitespace-nowrap mt-14 lg:mt-32">
           <h1 className="text-4xl text-slate-800 font-serif">
             Plans & Pricing
           </h1>
@@ -169,7 +169,7 @@ export default function PricingPage() {
             </span>
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-6 mt-10 w-full">
+        <div className="grid lg:grid-cols-3 gap-6 mt-10 w-full px-7 lg:px-0">
           {plansAndPricing.map(plan => (
             <div
               key={plan.Header}
@@ -177,7 +177,7 @@ export default function PricingPage() {
             >
               <div>
                 {plan.Header === 'Professional' ? (
-                  <div className="bg-primary py-2 border border-emerald-900 absolute w-full rotate-45 left-32 top-11">
+                  <div className="bg-primary py-2 border border-emerald-900 absolute max-w-xs w-full left-auto bottom-auto rotate-45 -right-20 top-14 lg:-right-24 lg:top-10">
                     <p className="text-white text-center text-[17px] tracking-wide uppercase">
                       Most Popular
                     </p>
@@ -221,7 +221,7 @@ export default function PricingPage() {
             </div>
           ))}
         </div>
-        <div className="mt-24 py-5">
+        <div className="mt-40 lg:mt-24 px-7 lg:py-5">
           <h1 className="text-center text-3xl font-serif text-slate-600">
             Super charge your work with add-ons
           </h1>
@@ -255,12 +255,14 @@ export default function PricingPage() {
             )}
           </div>
         </div>
-        <StartFreeCard className="mt-24">
-          It’s <span className="text-primary">your</span> business.
-          <br /> We’re here to help it grow.
-        </StartFreeCard>
-        <div className="w-full flex flex-col items-center mt-32">
-          <h1 className="text-3xl text-primary font-bold  py-8">
+        <div className="px-7 lg:px-0 mt-24">
+          <StartFreeCard>
+            It’s <span className="text-primary">your</span> business.
+            <br /> We’re here to help it grow.
+          </StartFreeCard>
+        </div>
+        <div className="w-full flex flex-col items-center mt-24 lg:mt-32">
+          <h1 className="text-3xl text-primary font-bold py-8">
             Frequently Asked Questions
           </h1>
           <div className="mx-auto w-full max-w-3xl rounded-2xl bg-white p-2">
@@ -268,7 +270,7 @@ export default function PricingPage() {
               <Disclosure key={question.question}>
                 {({open}) => (
                   <>
-                    <Disclosure.Button className="flex w-full justify-between px-4 py-2 ">
+                    <Disclosure.Button className="flex w-full justify-between px-4 py-2">
                       <span className="hover:text-primary text-left text-2xl font-bold text-slate-600">
                         {question.question}
                       </span>
@@ -279,7 +281,7 @@ export default function PricingPage() {
                         )}
                       />
                     </Disclosure.Button>
-                    <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                    <Disclosure.Panel className="px-4 pb-2 text-sm text-gray-500 leading-7">
                       {question.answer}
                     </Disclosure.Panel>
                   </>
