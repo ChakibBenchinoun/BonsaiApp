@@ -264,6 +264,20 @@ function Layout() {
               </Link>
             ),
           )}
+          <div className="flex flex-col mt-5">
+            <Link
+              to="/"
+              className="py-2 px-6 border border-primary rounded-md text-sm text-center text-primaryDark hover:bg-primary hover:text-white font-bold whitespace-nowrap uppercase transition"
+            >
+              Log in
+            </Link>
+            <Link
+              className="py-2 px-6 bg-primary border border-primary rounded-md text-center text-white text-sm hover:bg-primaryDark whitespace-nowrap font-bold uppercase transition mt-5"
+              to="/"
+            >
+              Start free
+            </Link>
+          </div>
         </div>
       </motion.div>
     </>
