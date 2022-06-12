@@ -231,6 +231,7 @@ function Layout() {
                     <Link
                       to={product.to}
                       className="text-xl hover:text-primaryDark flex"
+                      onClick={() => setShowMenu(false)}
                     >
                       {product.name}
                     </Link>
@@ -247,6 +248,7 @@ function Layout() {
                     <Link
                       to={templates.name}
                       className="text-xl hover:text-primaryDark flex"
+                      onClick={() => setShowMenu(false)}
                     >
                       <img src={templates.imgSrc} alt="" className="mr-3" />
                       {templates.name}
@@ -259,6 +261,7 @@ function Layout() {
                 className="py-3 w-full text-xl border-b border-gray-400 hover:text-primaryDark"
                 key={link.name}
                 to={link.to}
+                onClick={() => setShowMenu(false)}
               >
                 {link.name}
               </Link>
