@@ -20,7 +20,10 @@ import {
   getFooterTemplates,
 } from './utils/templates'
 import styles from './styles/app.css'
-import {Disclosure} from '@headlessui/react'
+
+import MenuIcon from './components/icons/menu-icon'
+import {motion} from 'framer-motion'
+import {Disclosure, Panel} from './components/disclosure'
 
 export function links() {
   return [{rel: 'stylesheet', href: styles}]
@@ -119,7 +122,7 @@ export default function App() {
     <Document title="Bonsai (Practice)">
       <Layout />
       <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </Document>
   )
 }
@@ -149,10 +152,12 @@ function Document({
 }
 
 function Layout() {
+  const {products, navTemplates} = useLoaderData<LoaderData>()
+  const [showMenu, setShowMenu] = React.useState(false)
   return (
     <>
-      <div className="bg-white fixed w-full top-0 z-50">
-        <div className="flex w-full lg:max-w-7xl mx-auto p-3 items-center justify-between xl:px-10 h-20 bg-white">
+      <div className="bg-white w-full top-0 z-10 fixed lg:block">
+        <div className="flex w-full lg:max-w-7xl mx-auto items-center justify-between px-20 lg:px-10 h-20 bg-white">
           <div className="shrink-0">
             <Link to="/">
               <img
@@ -191,11 +196,76 @@ function Layout() {
               </Link>
             </div>
           </div>
-          <div className="block lg:hidden px-5">
-            <Link to="/">Menu</Link>
-          </div>
         </div>
       </div>
+      <button
+        onClick={() => setShowMenu(!showMenu)}
+        className="block lg:hidden z-20 right-0 mt-5 mr-14 fixed"
+      >
+        <MenuIcon isOpen={showMenu} className="text-black w-11 h-11" />
+      </button>
+      <motion.div
+        animate={showMenu ? {x: ['100%', '0%', '0%']} : ''}
+        initial={{x: '100%'}}
+        transition={{duration: 0.7, ease: 'easeInOut'}}
+        className="fixed text-black h-full bg-white w-full z-10 py-7 px-10 lg:hidden overflow-y-scroll"
+      >
+        <div className="shrink-0">
+          <Link to="/">
+            <img
+              src="https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/5e5fd7c602ca7cd432feb68e_bonsai-logo.svg"
+              width="150"
+              alt="Bonsai logo"
+            />
+          </Link>
+        </div>
+        <div className="flex flex-col mt-14">
+          {navigation.map(link =>
+            link.name === 'Product' ? (
+              <Disclosure
+                name="Products"
+                className="py-3 w-full text-left text-xl border-b border-gray-400 justify-between hover:text-primaryDark"
+              >
+                {products.map(product => (
+                  <Panel key={product.name} className="py-2">
+                    <Link
+                      to={product.to}
+                      className="text-xl hover:text-primaryDark flex"
+                    >
+                      {product.name}
+                    </Link>
+                  </Panel>
+                ))}
+              </Disclosure>
+            ) : link.name === 'Templates' ? (
+              <Disclosure
+                name="Templates"
+                className="py-3 w-full text-left text-xl border-b border-gray-400 justify-between hover:text-primaryDark"
+              >
+                {navTemplates.map(templates => (
+                  <Panel key={templates.name} className="py-2">
+                    <Link
+                      to={templates.name}
+                      className="text-xl hover:text-primaryDark flex"
+                    >
+                      <img src={templates.imgSrc} alt="" className="mr-3" />
+                      {templates.name}
+                    </Link>
+                  </Panel>
+                ))}
+              </Disclosure>
+            ) : (
+              <Link
+                className="py-3 w-full text-xl border-b border-gray-400 hover:text-primaryDark"
+                key={link.name}
+                to={link.to}
+              >
+                {link.name}
+              </Link>
+            ),
+          )}
+        </div>
+      </motion.div>
     </>
   )
 }
@@ -205,11 +275,11 @@ function ProductDropDown() {
   const [showProductsMenu, setShowProductsMenu] = React.useState(false)
   const [showProductList, setShowProductList] = React.useState(false)
   return (
-    <div className="h-full">
+    <div>
       <button
         onMouseEnter={() => setShowProductsMenu(true)}
         onMouseLeave={() => setShowProductsMenu(false)}
-        className="mr-11 h-full"
+        className="mr-11 whitespace-nowrap"
       >
         Products <ChevronDown className="mr-2 inline-block" />
       </button>
@@ -337,11 +407,11 @@ function TemplateDropDown() {
   const [showTemplateMenu, setShowTemplateMenu] = React.useState(false)
   const [templateName, setTemplateName] = React.useState('')
   return (
-    <div className="h-full">
+    <div>
       <button
         onMouseEnter={() => setShowTemplateMenu(true)}
         onMouseLeave={() => setShowTemplateMenu(false)}
-        className="mr-11 h-full"
+        className="mr-11 whitespace-nowrap"
       >
         Templates <ChevronDown className="mr-2 inline-block" />
       </button>
@@ -453,26 +523,22 @@ function Footer() {
             <div className="mt-8 flex flex-col">
               <h1 className="font-semibold mb-2">Templates</h1>
               {data.footerTemplates.map(templatesSection => (
-                <Disclosure key={templatesSection.name}>
-                  {({open}) => (
-                    <>
-                      <Disclosure.Button className="text-left text-slate-500 flex items-center">
-                        <span>{templatesSection.name}</span>
-                        <ChevronDown className="h-7 w-8 mt-1" />
-                      </Disclosure.Button>
-                      <Disclosure.Panel className="text-gray-500 flex flex-col">
-                        {templatesSection.templates.map(template => (
-                          <Link
-                            key={template.name}
-                            to="/"
-                            className="capitalize my-1 ml-3 text-slate-500 w-fit hover:text-slate-600"
-                          >
-                            {template.name}
-                          </Link>
-                        ))}
-                      </Disclosure.Panel>
-                    </>
-                  )}
+                <Disclosure
+                  key={templatesSection.name}
+                  name={templatesSection.name}
+                  className="text-left text-slate-500"
+                >
+                  <Panel className="text-gray-500 flex flex-col">
+                    {templatesSection.templates.map(template => (
+                      <Link
+                        key={template.name}
+                        to="/"
+                        className="capitalize my-1 ml-3 text-slate-500 w-fit hover:text-slate-600"
+                      >
+                        {template.name}
+                      </Link>
+                    ))}
+                  </Panel>
                 </Disclosure>
               ))}
               <Link
@@ -490,26 +556,18 @@ function Footer() {
             </div>
           ) : column.col === 'bonsai' ? (
             <div className="mt-8 flex flex-col">
-              <Disclosure>
-                {({open}) => (
-                  <>
-                    <Disclosure.Button className="text-left text-slate-500 flex items-center">
-                      <span>Comparisons</span>
-                      <ChevronDown className="h-7 w-8 mt-1" />
-                    </Disclosure.Button>
-                    <Disclosure.Panel className="text-gray-500 flex flex-col">
-                      {comparisons.map(link => (
-                        <Link
-                          key={link}
-                          to="/"
-                          className="capitalize my-1 ml-3 text-slate-500 w-fit hover:text-slate-600"
-                        >
-                          {link}
-                        </Link>
-                      ))}
-                    </Disclosure.Panel>
-                  </>
-                )}
+              <Disclosure name="Comparisons">
+                <Panel className="text-gray-500 flex flex-col">
+                  {comparisons.map(link => (
+                    <Link
+                      key={link}
+                      to="/"
+                      className="capitalize my-1 ml-3 text-slate-500 w-fit hover:text-slate-600"
+                    >
+                      {link}
+                    </Link>
+                  ))}
+                </Panel>
               </Disclosure>
             </div>
           ) : null}
